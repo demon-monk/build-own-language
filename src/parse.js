@@ -7,7 +7,7 @@ const parenthesize = tokens => {
   if (isOpeningParenthesis(token.value)) {
     const expression = [];
     while (!isClosingParenthesis(peek(tokens).value)) {
-      expression.push(parenthesize(token));
+      expression.push(parenthesize(tokens));
     }
     pop(tokens);
     return expression;
