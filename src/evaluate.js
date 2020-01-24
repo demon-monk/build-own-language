@@ -17,7 +17,14 @@ const getIdentifier = node => {
   throw new Error(`${node.name} is not defined`);
 };
 
+const define = node => {
+  environment[node.identifier.name] = node.assignment.value;
+};
+
 const evaluate = node => {
+  if (node.type === 'VariableDeclaration') {
+    return define(node);
+  }
   if (node.type === 'CallExpression') {
     return apply(node);
   }
